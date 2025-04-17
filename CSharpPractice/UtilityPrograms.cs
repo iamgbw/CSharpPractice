@@ -14,6 +14,9 @@ namespace CSharpPractice
     internal class UtilityPrograms
     {
         static IWebDriver driver;
+
+    
+
         public static void loadBrowser()
         {
 
@@ -30,6 +33,18 @@ namespace CSharpPractice
             // driver.Quit();
         }
 
+
+        public static void captureScreenshot()
+        {
+            loadBrowser();
+            driver.Navigate().GoToUrl("https://www.w3schools.com/html/html_tables.asp");
+            driver.Navigate().Refresh();    // Refresh the browser
+
+            ITakesScreenshot screenshotDriver = driver as ITakesScreenshot;
+            Screenshot screenshot = screenshotDriver.GetScreenshot();
+            screenshot.SaveAsFile("screenshot.png", ScreenshotImageFormat.Png);
+
+        }
 
         public static void getDataFromTablePresentInWebPage()
         {
