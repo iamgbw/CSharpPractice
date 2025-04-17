@@ -71,7 +71,7 @@ namespace CSharpPractice
 
         public static void ButterFlyPattern()
         {
-            Console.WriteLine("ButterFlyPattern");
+            Console.WriteLine("ButterFlyPattern \n");
             for (int row = 0; row <= 9; row++)
             {
                 for (int col = 0; col <= 9; col++)
