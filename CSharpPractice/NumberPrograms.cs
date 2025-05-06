@@ -290,7 +290,7 @@ namespace CSharpPractice
                 end--;
             }
 
-            Console.WriteLine("Input  = " + input);
+            Console.WriteLine("Input = " + input);
             Console.WriteLine("Output = " + output);
 
         }
