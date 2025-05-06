@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using WebDriverManager.DriverConfigs.Impl;
 using WebDriverManager;
 using System.Threading;
+using NPOI.SS.UserModel;
+using NPOI.XSSF.UserModel;
 
 namespace CSharpPractice
 {
@@ -40,9 +42,68 @@ namespace CSharpPractice
             driver.Navigate().GoToUrl("https://www.w3schools.com/html/html_tables.asp");
             driver.Navigate().Refresh();    // Refresh the browser
 
-            ITakesScreenshot screenshotDriver = driver as ITakesScreenshot;
+            ITakesScreenshot screenshotDriver = (ITakesScreenshot)driver;
             Screenshot screenshot = screenshotDriver.GetScreenshot();
-            screenshot.SaveAsFile("screenshot.png", ScreenshotImageFormat.Png);
+            screenshot.SaveAsFile(@"C:\Users\ganesh.waghmare\OneDrive - Nihilent Limited\Desktop\screenshot.png");
+
+        }
+
+        public static void readDataFromExcel()
+        {
+            // Provide the full path to your Excel file
+            string filePath = @"C:\Users\ganesh.waghmare\OneDrive - Nihilent Limited\Desktop\Data.xlsx";
+
+            // Open the Excel file
+            using (FileStream file = new FileStream(filePath, FileMode.Open, FileAccess.Read ))
+            {
+                // Load the workbook
+                XSSFWorkbook workbook = new XSSFWorkbook(file);
+
+                // Get the first worksheet
+                ISheet sheet = workbook.GetSheetAt(0);
+
+                // Loop through all rows in the sheet
+                for (int rowIndex = 0; rowIndex <= sheet.LastRowNum; rowIndex++)
+                {
+                    IRow row = sheet.GetRow(rowIndex);
+
+                    if (row != null)
+                    {
+                        // Loop through all cells in the row
+                        for (int colIndex = 0; colIndex < row.LastCellNum; colIndex++)
+                        {
+                            ICell cell = row.GetCell(colIndex);
+
+                            // Print the cell value (if null, print "NULL")
+                            Console.Write((cell != null ? cell.ToString() : "NULL") + "\t");
+                        }
+                        Console.WriteLine(); // Move to next line after each row
+                    }
+                }
+            }
+
+        }
+
+        public static void downloadFileAndVerifySomeFieldsInDownloadedFile()
+        {
+            // Step 1: Set download directory
+            string downloadPath = @"C:\DownloadedFiles";
+
+            // Create the directory if it doesn't exist
+            if (!Directory.Exists(downloadPath))
+            {
+                Directory.CreateDirectory(downloadPath);
+            }
+
+            // Step 2: Set Chrome options to define download behavior
+            var chromeOptions = new ChromeOptions();
+            chromeOptions.AddUserProfilePreference("download.default_directory", downloadPath);
+            chromeOptions.AddUserProfilePreference("download.prompt_for_download", false);
+            chromeOptions.AddUserProfilePreference("disable-popup-blocking", "true");
+
+            // Step 3: Launch Chrome browser with these options
+            driver = new ChromeDriver(chromeOptions);
+
 
         }
 

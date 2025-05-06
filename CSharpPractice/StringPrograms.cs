@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -289,6 +290,10 @@ namespace CSharpPractice
 
         public static void checkStringAnagram() {
 
+            Stopwatch stopwatch = Stopwatch.StartNew();
+
+
+
             Console.WriteLine("Try programiz.pro");
             Console.WriteLine("Check String Anagram \n\n");
             Console.WriteLine("Enter First String = ");
@@ -338,6 +343,11 @@ namespace CSharpPractice
             Console.WriteLine((isAnagram)?
              "Given Strings are Anagram"
                     : "Given Strings are NOT Anagram");
+
+
+            stopwatch.Stop();
+           
+            Console.WriteLine($"Execution Time: {stopwatch.ElapsedMilliseconds} ms");
         }
 
 

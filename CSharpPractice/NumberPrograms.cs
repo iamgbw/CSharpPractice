@@ -15,7 +15,7 @@ namespace CSharpPractice
             int radius = int.Parse(Console.ReadLine());
             double pi = 3.14;
             double area = 0;
-            
+
             area = pi * radius * radius;
 
             Console.WriteLine("Area = " + area);
@@ -24,7 +24,7 @@ namespace CSharpPractice
         public static void fibonacciSeries()
         {
             Console.WriteLine("Fibonacci Series = ");
-            int first = 0; 
+            int first = 0;
             int second = 1;
             int next;
 
@@ -92,7 +92,7 @@ namespace CSharpPractice
 
             for (int i = 2; i * i <= number; i++)
             {
-                if(number % i == 0)
+                if (number % i == 0)
                 {
                     isPrime = false;
                     break;
@@ -107,7 +107,7 @@ namespace CSharpPractice
 
         }
         public static void findAllPrimeNumbersUptoTheGivenNumber() {
-           
+
             Console.WriteLine("Find Prime Number upto the given Numbe \n");
 
             Console.Write("Enter a Number = ");
@@ -187,6 +187,10 @@ namespace CSharpPractice
             }
         }
 
+        public static void printNumbersWithoutNumber()
+        {
+
+        }
         public static void findArmStrongNumber() {
 
             Console.WriteLine("Enter a Number = ");
@@ -200,17 +204,17 @@ namespace CSharpPractice
                 int digit = num % 10;
                 int power = 1;
 
-                for (int i = 0; i < digits; i++) { 
-                
+                for (int i = 0; i < digits; i++) {
+
                     power = power * digit;
                 }
 
                 sum += power;
                 num /= 10;
-            
+
             }
 
-            if(originalNumber == sum)
+            if (originalNumber == sum)
             {
                 Console.WriteLine("Given Number is ArmStrong Number.");
             }
@@ -219,7 +223,7 @@ namespace CSharpPractice
             }
 
         }
-        
+
         public static void checkGivenNumberIsPrimeOrNonPrime() {
             Console.WriteLine("Check Given Number Is Prime Or NonPrime \n\n");
             Console.Write("Enter Number = ");
@@ -229,9 +233,9 @@ namespace CSharpPractice
             if (num < 2) {
                 Console.WriteLine("Given Number is Not a Prime Number");
             }
-            
+
             for (int i = 2; i < num; i++) {
-                if (num % i == 0) { 
+                if (num % i == 0) {
                     nonPrime++;
                 }
             }
@@ -259,6 +263,35 @@ namespace CSharpPractice
 
 
             Console.Write("Reversed Number = " + reversedNumber + "\n\n");
+
+        }
+
+        public static void digitOrStringPatternStartEndStartEnd()
+        {
+            string input = "0123456789";
+            string output = "";
+
+            int start = 0;
+            int end = input.Length - 1;
+
+            while (start <= end)
+            {
+                if (start == end)
+                {
+                    output += input[start];
+                }
+                else
+                {
+                    output += input[start];
+                    output += input[end];
+                }
+
+                start++;
+                end--;
+            }
+
+            Console.WriteLine("Input  = " + input);
+            Console.WriteLine("Output = " + output);
 
         }
     }
