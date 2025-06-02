@@ -48,9 +48,12 @@ Console.WriteLine("This is Main Class \n");
 
 //UtilityPrograms.getDataFromTablePresentInWebPage();
 //UtilityPrograms.captureScreenshot();
-UtilityPrograms.readDataFromExcel();
+//UtilityPrograms.readDataFromExcel();
 
 //StarPattern.StarPatternVerticalDamaru();
 //StarPattern.StarPatternHorizontalDamaru();
 //StarPattern.HollowDiamond();
 //StarPattern.ButterFlyPattern();
+
+
+LINQPrograms.charOccurrenceUsingLINQ();
