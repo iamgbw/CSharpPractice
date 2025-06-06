@@ -13,7 +13,7 @@ namespace CSharpPractice
         {
             string input = "Ganesh Bhimrao Waghmare";
 
-            var charCount = input.GroupBy(c => c)
+            var charCount = input.Where(c => !Char.IsWhiteSpace(c)).GroupBy(c => c)
                 .Select(group => new { Char = group.Key, Count = group.Count() });
 
             foreach(var item in charCount)
@@ -21,5 +21,11 @@ namespace CSharpPractice
                 Console.WriteLine($"Character {item.Char} occurres {item.Count}");
             }
         }
+
+        public static void reverseString()
+        { 
+        }
+
+
     }
 }
