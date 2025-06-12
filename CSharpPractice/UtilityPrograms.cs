@@ -27,6 +27,8 @@ namespace CSharpPractice
 
             // Launch browser
             driver = new ChromeDriver();
+            
+
 
             // Navigate to a website
             //driver.Navigate().GoToUrl("https://www.google.com");
@@ -173,6 +175,89 @@ namespace CSharpPractice
 
                 }
                 Console.WriteLine();
+            }
+        }
+
+
+        public static void useGetHandlesMethod()
+        {
+            List<string> windowHandles = new List<string>(driver.WindowHandles);
+
+            Console.WriteLine("Window Handles:");
+            foreach (var handle in windowHandles)
+            {
+                Console.WriteLine(handle);
+            }
+
+            // Switch to the second tab (Google)
+            driver.SwitchTo().Window(windowHandles[1]);
+            Console.WriteLine("Switched to: " + driver.Title);
+
+            // Switch back to the first tab
+            driver.SwitchTo().Window(windowHandles[0]);
+            Console.WriteLine("Switched back to: " + driver.Title);
+
+            // Close all windows
+            driver.Quit();
+
+
+        }
+
+
+        public static async Task findBrokenLinks()
+        {
+            // Step 1: Launch Chrome browser using Selenium WebDriver
+            loadBrowser();
+
+            // Step 2: Navigate to the website
+            driver.Navigate().GoToUrl("https://testautomationpractice.blogspot.com/");
+
+            // Step 3: Find all <a> (anchor) tags on the page - these represent links
+            IList<IWebElement> links = driver.FindElements(By.TagName("a"));
+            Console.WriteLine($"Total Links found = {links.Count}");
+
+            // Step 4: Create a HttpClient to make HTTP requests to each link
+            using (HttpClient client = new HttpClient())
+            {
+                // Step 5: Loop through each link element
+                foreach (IWebElement link in links)
+                {
+                    // Get the value of the href attribute (the actual URL)
+                    // Returns a null if the value is not set.
+                    string url = link.GetAttribute("href");
+
+                    // Check that the URL is not null/empty and is an HTTP or HTTPS link
+                    if (!string.IsNullOrEmpty(url) && (url.StartsWith("http") || url.StartsWith("https")))
+                    {
+                        try
+                        {
+                            // Step 6: Send a GET request to the URL
+                            HttpResponseMessage response = await client.GetAsync(url);
+
+                            // Step 7: Convert the HTTP status code from enum to integer
+                            // e.g., 200 = OK, 404 = Not Found
+                            // Convert the HTTP status (e.g. OK, NotFound) from enum to number (e.g. 200, 404)
+                            int statusCode = (int)response.StatusCode;
+
+                            // Step 8: Check if the link is broken (status code 400 or above)
+                            if(statusCode >= 400)
+                                Console.WriteLine($"❌ Broken Link: {url} (Status Code: {statusCode})");
+                            else
+                                Console.WriteLine($"✅ Working Link: {url} (Status Code: {statusCode})");
+
+                        }
+
+                        catch (Exception ex)
+                        {
+                            // Step 9: If an exception occurs (e.g., timeout, DNS error), mark link as broken
+                            Console.WriteLine($"❗ Error accessing {url} - Marked as Broken");
+                        }
+                    }
+                }
+
+                // Step 10: Close the browser after checking all links
+                driver.Quit();
+                Console.WriteLine("✅ Done checking links.");
             }
 
 

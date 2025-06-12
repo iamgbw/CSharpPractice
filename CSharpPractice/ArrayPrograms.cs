@@ -72,7 +72,6 @@ namespace CSharpPractice
 
             for (int i = 0; i < array.Length - 1; i++)
             {
-
                 for (int j = 0; j < array.Length - i - 1; j++)
                 {
 

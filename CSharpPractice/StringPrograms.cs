@@ -189,7 +189,7 @@ namespace CSharpPractice
             string input = "My Name is Ganesh";
             //Output = "Ganesh is Name My"
 
-            List<string> list = new List<string>();
+            IList<string> list = new List<string>();
             string currentWord = "";
 
             for (int i = 0; i < input.Length; i++)
@@ -219,7 +219,7 @@ namespace CSharpPractice
         public static void findHighestValueInDictionaryWithAllDetailsForThatValue()
         {
                  // Step 1: Create and initialize the dictionary with animal counts
-                 Dictionary<string, int> animalCount = new Dictionary<string, int>
+                 IDictionary<string, int> animalCount = new Dictionary<string, int>
                  {
                         { "cat", 3 },
                         { "dog", 7 },

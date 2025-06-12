@@ -8,6 +8,6 @@ namespace CSharpPractice
 {
     internal interface Interface1
     {
-        public static void 
+        
     }
 }

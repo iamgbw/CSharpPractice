@@ -39,8 +39,10 @@ Console.WriteLine("This is Main Class \n");
 //NumberPrograms.reverseNumber();
 //NumberPrograms.findDuplicateElementInGivenArray();
 //NumberPrograms.findSquareOfAlternateNumbers();
+//NumberPrograms.printNumbersWithoutNumber();
 //NumberPrograms.findAllPrimeNumbersUptoTheGivenNumber();
 //NumberPrograms.findSmallestNumberInArray();
+//NumberPrograms.findLargestNumberInArray();
 //NumberPrograms.areaOfACircle();
 
 
@@ -50,10 +52,16 @@ Console.WriteLine("This is Main Class \n");
 //UtilityPrograms.captureScreenshot();
 //UtilityPrograms.readDataFromExcel();
 
+static async Task Main(string[] args)
+{
+    await UtilityPrograms.findBrokenLinks();
+}
+
+
 //StarPattern.StarPatternVerticalDamaru();
 //StarPattern.StarPatternHorizontalDamaru();
 //StarPattern.HollowDiamond();
 //StarPattern.ButterFlyPattern();
 
 
-LINQPrograms.charOccurrenceUsingLINQ();
+//LINQPrograms.charOccurrenceUsingLINQ();

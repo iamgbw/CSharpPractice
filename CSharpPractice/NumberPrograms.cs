@@ -62,18 +62,28 @@ namespace CSharpPractice
             //Console.WriteLine()
             for (int i = 0; i < input.Length; i++)
             {
-
-                if (input[i] < smallestNum)
+                if (smallestNum >= input[i])
                 {
                     smallestNum = input[i];
-
-
                 }
             }
-
             Console.WriteLine("Smallest Num = " + smallestNum);
+        }
 
 
+        public static void findLargestNumberInArray()
+        {
+            int[] array = { 25, 11, 7, 75, 56 };
+            int largestNum = array[0];
+
+            for (int i = 0; i < array.Length; i++)
+            {
+                if (largestNum <= array[i])
+                {
+                    largestNum = array[i];
+                }
+            }
+            Console.WriteLine("Largest Num = " + largestNum);
 
         }
         public static void findGivenNumberIsPrimeOrNonPrime() {
@@ -139,7 +149,7 @@ namespace CSharpPractice
             Console.WriteLine("\n find Duplicate Element In Given Array\n");
             int[] input = { 5, 2, 6, 4, 7, 6, 9 };
 
-            Dictionary<int, int> elementCount = new Dictionary<int, int>();
+            IDictionary<int, int> elementCount = new Dictionary<int, int>();
 
             foreach (int num in input)
             {
@@ -189,7 +199,13 @@ namespace CSharpPractice
 
         public static void printNumbersWithoutNumber()
         {
+            int start = 'A' / 'A';      // 65 / 65 = 1
+            int end = 'd';              // ASCII of 'd' = 100
 
+            for (int i = start; i <= end; i++)
+            {
+                Console.Write(i + " "); 
+            }
         }
         public static void findArmStrongNumber() {
 
